@@ -26,7 +26,7 @@ There are lots of lexical environments. Which one is currently running is manage
 In JavaScript, using parenthesis ()
 
 ---------------------------------------
-## Stuff
+## Execution Context
 
 - There are 2 phases in JavaScript's execution context
     1. Compilation phase
@@ -101,3 +101,21 @@ baz();  // reference error
 ```
 
 > If line 38 were on line 35, it would be undefined?
+
+
+## Conversations
+a) Compiler
+b) ...
+
+```js
+var foo = "bar";
+function bar() {
+  var foo = "baz";
+}
+function baz(foo) {
+  foo = "bam";
+  bam = "yay";
+}
+```
+
+1. Compiler: "Hey Global Scope manager, I've found a "
