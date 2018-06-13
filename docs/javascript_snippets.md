@@ -270,7 +270,57 @@ promiseToCleanRoom.then(function(fromResolve) {
 
 ----------------------------------
 
+## Async
+```js
+function waitThreeSeconds() {
+  var ms = 3000 + new Date().getTime();
+  while(new Date() < ms) { }
+  console.log('Finished function');
+}
+
+function clickHandler() {
+  console.log('Click event');
+}
+
+document.addEventListener('click', clickHandler);
+
+waitThreeSeconds();
+console.log('Finished execution');
+
+var a = 100 + new Date().getTime();
+while(new Date() < a) {
+  console.log('running...');
+}
+```
+
+![Console](../assets/images/async1.png)
+
+What happens?
+1. Load page
+1. Click in document
+1. Waits
+1. 3 seconds pass
+1. console: Finished function
+1. console: Finished execution
+1. console: running... (1122x)
+1. console: Click event
+
+Why?
+JavaScript doesn't look (execute) at the callback (event) queue until the stack is empty
+
 ----------------------------------
 
+
+
+# Misc Snippets
+
+## Performing "Work"
+```js
+function doWork() {
+  var ms = 3000 + new Date().getTime();
+  while(new Date() < ms) { }
+  console.log('Finished work...');
+}
+```
 
 ----------------------------------

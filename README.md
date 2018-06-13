@@ -119,3 +119,19 @@ function baz(foo) {
 ```
 
 1. Compiler: "Hey Global Scope manager, I've found a "
+
+
+---
+
+## Exploring Objects
+Objects may contain:
+- Primitives (property)
+- Objects (property)
+- Functions (method)
+
+![Objects](assets/images/objects1.png)
+
+When JavaScript creates an object...
+```js
+
+```
