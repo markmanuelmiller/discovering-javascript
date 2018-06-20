@@ -19,6 +19,9 @@ Long answer:
 - Javascript has 5 data types that are passed by value: Boolean, null, undefined, String, and Number
 - Javascript has 3 data types that are passed by reference: Array, Function, and Object
 
+> [Source](https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0)
+
+
 ### By Reference
 Example 1
 ```js
@@ -69,10 +72,6 @@ console.log(x, y, a, b); // -> 10, 'abc', 5, 'def'
 ----------------------------------
 
 ## Prototype
-
-----------------------------------
-
-## `new`
 
 ----------------------------------
 
@@ -261,12 +260,85 @@ promiseToCleanRoom.then(function(fromResolve) {
 
 ## Working with Arrays
 ### `forEach`
+Syntax
+```js
+arr.forEach(function callback(currentValue[, index[, array]]) {
+    //your iterator
+}[, thisArg]);
+```
+> There is no way to stop or break the .forEach() iterator. Use simple for loop instead.
 
+Examples
+```js
+var arr = [1,2,3];
+arr.forEach(function(element) {
+  console.log(element);
+});
+```
+
+```js
+var arr = [1,2,3];
+arr.forEach(function(element, index) {
+  console.log(index + ': ' + element);
+});
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
 ### `map`
+Syntax
+```js
+var new_array = arr.map(function callback(currentValue[, index[, array]]) {
+    // Return element for new_array
+}[, thisArg])
+```
+> map does not mutate the array on which it is called
 
+
+Examples
+```js
+var arr = [1,2,3];
+var newArr = arr.map(function(element) {
+  return element * 2;
+});
+```
+
+```js
+var map = Array.prototype.map;
+var a = map.call('Hello World', function(x) {
+  return x.charCodeAt(0);
+});
+// a now equals [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ### `reduce`
+Syntax
+```js
+arr.reduce(callback[, initialValue])
+```
+
+Examples
+```js
+var sum = [0, 1, 2, 3].reduce(function (accumulator, currentValue) {
+  return accumulator + currentValue;
+}, 0);
+// sum is 6
+```
+
+Flatten an array of arrays
+```js
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+  function(accumulator, currentValue) {
+    return accumulator.concat(currentValue);
+  },
+  []
+);
+// flattened is [0, 1, 2, 3, 4, 5]
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 ----------------------------------
 
