@@ -69,9 +69,132 @@ console.log(x, y, a, b); // -> 10, 'abc', 5, 'def'
 
 ## Performant `for` Loop
 
+
+
 ----------------------------------
 
-## Prototype
+## Working with Arrays
+### `forEach`
+Syntax
+```js
+arr.forEach(function callback(currentValue[, index[, array]]) {
+    //your iterator
+}[, thisArg]);
+```
+> There is no way to stop or break the .forEach() iterator. Use simple for loop instead.
+
+Examples
+```js
+var arr = [1,2,3];
+arr.forEach(function(element) {
+  console.log(element);
+});
+```
+
+```js
+var arr = [1,2,3];
+arr.forEach(function(element, index) {
+  console.log(index + ': ' + element);
+});
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+
+### `map`
+Syntax
+```js
+var new_array = arr.map(function callback(currentValue[, index[, array]]) {
+    // Return element for new_array
+}[, thisArg])
+```
+> map does not mutate the array on which it is called
+
+
+Examples
+```js
+var arr = [1,2,3];
+var newArr = arr.map(function(element) {
+  return element * 2;
+});
+```
+
+```js
+var map = Array.prototype.map;
+var a = map.call('Hello World', function(x) {
+  return x.charCodeAt(0);
+});
+// a now equals [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+### `reduce`
+Syntax
+```js
+arr.reduce(callback[, initialValue])
+```
+
+Examples
+```js
+var sum = [0, 1, 2, 3].reduce(function (accumulator, currentValue) {
+  return accumulator + currentValue;
+}, 0);
+// sum is 6
+```
+
+Flatten an array of arrays
+```js
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+  function(accumulator, currentValue) {
+    return accumulator.concat(currentValue);
+  },
+  []
+);
+// flattened is [0, 1, 2, 3, 4, 5]
+```
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+
+----------------------------------
+
+## Async
+```js
+function waitThreeSeconds() {
+  var ms = 3000 + new Date().getTime();
+  while(new Date() < ms) { }
+  console.log('Finished function');
+}
+
+function clickHandler() {
+  console.log('Click event');
+}
+
+document.addEventListener('click', clickHandler);
+
+waitThreeSeconds();
+console.log('Finished execution');
+
+var a = 100 + new Date().getTime();
+while(new Date() < a) {
+  console.log('running...');
+}
+```
+
+![Console](../assets/images/async1.png)
+
+What happens?
+1. Load page
+1. Click in document
+1. Waits
+1. 3 seconds pass
+1. console: Finished function
+1. console: Finished execution
+1. console: running... (1122x)
+1. console: Click event
+
+Why?
+JavaScript doesn't look (execute) at the callback (event) queue until the stack is empty
+
 
 ----------------------------------
 
@@ -256,131 +379,8 @@ promiseToCleanRoom.then(function(fromResolve) {
 })
 ```
 
-----------------------------------
+---
 
-## Working with Arrays
-### `forEach`
-Syntax
-```js
-arr.forEach(function callback(currentValue[, index[, array]]) {
-    //your iterator
-}[, thisArg]);
-```
-> There is no way to stop or break the .forEach() iterator. Use simple for loop instead.
-
-Examples
-```js
-var arr = [1,2,3];
-arr.forEach(function(element) {
-  console.log(element);
-});
-```
-
-```js
-var arr = [1,2,3];
-arr.forEach(function(element, index) {
-  console.log(index + ': ' + element);
-});
-```
-
-[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-
-### `map`
-Syntax
-```js
-var new_array = arr.map(function callback(currentValue[, index[, array]]) {
-    // Return element for new_array
-}[, thisArg])
-```
-> map does not mutate the array on which it is called
-
-
-Examples
-```js
-var arr = [1,2,3];
-var newArr = arr.map(function(element) {
-  return element * 2;
-});
-```
-
-```js
-var map = Array.prototype.map;
-var a = map.call('Hello World', function(x) {
-  return x.charCodeAt(0);
-});
-// a now equals [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]
-```
-
-[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-
-### `reduce`
-Syntax
-```js
-arr.reduce(callback[, initialValue])
-```
-
-Examples
-```js
-var sum = [0, 1, 2, 3].reduce(function (accumulator, currentValue) {
-  return accumulator + currentValue;
-}, 0);
-// sum is 6
-```
-
-Flatten an array of arrays
-```js
-var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
-  function(accumulator, currentValue) {
-    return accumulator.concat(currentValue);
-  },
-  []
-);
-// flattened is [0, 1, 2, 3, 4, 5]
-```
-
-[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-
-----------------------------------
-
-## Async
-```js
-function waitThreeSeconds() {
-  var ms = 3000 + new Date().getTime();
-  while(new Date() < ms) { }
-  console.log('Finished function');
-}
-
-function clickHandler() {
-  console.log('Click event');
-}
-
-document.addEventListener('click', clickHandler);
-
-waitThreeSeconds();
-console.log('Finished execution');
-
-var a = 100 + new Date().getTime();
-while(new Date() < a) {
-  console.log('running...');
-}
-```
-
-![Console](../assets/images/async1.png)
-
-What happens?
-1. Load page
-1. Click in document
-1. Waits
-1. 3 seconds pass
-1. console: Finished function
-1. console: Finished execution
-1. console: running... (1122x)
-1. console: Click event
-
-Why?
-JavaScript doesn't look (execute) at the callback (event) queue until the stack is empty
-
-----------------------------------
 
 
 

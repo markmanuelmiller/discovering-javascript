@@ -25,8 +25,10 @@ There are lots of lexical environments. Which one is currently running is manage
 
 In JavaScript, using parenthesis ()
 
----------------------------------------
-## Execution Context
+
+
+## Concepts
+### Execution Context
 
 - There are 2 phases in JavaScript's execution context
     1. Compilation phase
@@ -35,8 +37,6 @@ In JavaScript, using parenthesis ()
 - Don't set variables to 'undefined'. Will help in debugging.
 
 ---------------------------------------
-
-## Concepts
 
 ### `this`
 
@@ -93,13 +93,18 @@ fn(); // -> Window {stop: ƒ, open: ƒ, alert: ƒ, ...}
 
 6. If the function is an ES2015 arrow function, it ignores all the rules above and receives the this value of its surrounding scope at the time it’s created. To determine this, go one line above the arrow function’s creation and see what the value of this is there. It will be the same in the arrow function.
 
+---
+
+### `new`
 
 
 ---
 
-## Gotcha's
+### `prototype`
 
-*Not defined* versus *undefined*
+---
+
+### *Not defined* versus *undefined*
 ```js
 console.log(a); // Uncaught ReferenceError: a is not defined
 ```
@@ -110,8 +115,9 @@ console.log(a); // undefined
 ```
 > a has been assigned memory with a value of undefined
 
----------------------------------------
-2 Phases in action
+---
+
+### 2 Phases in action
 ```js
 function b() {
   console.log('called b!');
@@ -122,7 +128,7 @@ var a = 'Hello world';
 console.log(a); // Hello world
 ```
 
----------------------------------------
+
 ```js
 var foo = 'bar';
 function bar() {
@@ -163,6 +169,22 @@ baz();  // reference error
 
 > If line 38 were on line 35, it would be undefined?
 
+
+---
+
+## Exploring Objects
+Objects may contain:
+- Primitives (property)
+- Objects (property)
+- Functions (method)
+
+![Objects](assets/images/objects1.png)
+
+When JavaScript creates an object...
+```js
+
+```
+
 ---
 
 ## Conversations
@@ -181,19 +203,3 @@ function baz(foo) {
 ```
 
 1. Compiler: "Hey Global Scope manager, I've found a "
-
-
----
-
-## Exploring Objects
-Objects may contain:
-- Primitives (property)
-- Objects (property)
-- Functions (method)
-
-![Objects](assets/images/objects1.png)
-
-When JavaScript creates an object...
-```js
-
-```
