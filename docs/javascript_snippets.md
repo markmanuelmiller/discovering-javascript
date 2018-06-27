@@ -12,60 +12,6 @@ function someFunction(parm1, parm2, parm3) {
 > This is recommended over `if(parm1 !== undefined){}`
 
 ----------------------------------
-## By Reference or By Value
-Short answer: both
-
-Long answer:
-- Javascript has 5 data types that are passed by value: Boolean, null, undefined, String, and Number
-- Javascript has 3 data types that are passed by reference: Array, Function, and Object
-
-> [Source](https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0)
-
-
-### By Reference
-Example 1
-```js
-function doSomething() {
-  var arr = [1,2,3,4,5];  
-  doSomethingElse(arr);
-  console.log(arr); // 1,2,3,4,5,6
-}
-
-function doSomethingElse(arr) {
-  arr.push(6);
-  return false;
-}
-
-doSomething();
-```
-
-Example 2:
-```js
-function changeAgeImpure(person) {
-    person.age = 25;
-    return person;
-}
-var alex = {
-    name: 'Alex',
-    age: 30
-};
-var changedAlex = changeAgeImpure(alex);
-console.log(alex); // -> { name: 'Alex', age: 25 }
-console.log(changedAlex); // -> { name: 'Alex', age: 25 }
-```
-
-### By Value
-```js
-var x = 10;
-var y = 'abc';
-var a = x;
-var b = y;
-a = 5;
-b = 'def';
-console.log(x, y, a, b); // -> 10, 'abc', 5, 'def'
-```
-
-----------------------------------
 
 ## Performant `for` Loop
 
@@ -155,7 +101,26 @@ var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
 
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
-----------------------------------
+
+### Adding Multiple Arrays Together & Finding the Difference
+The following code will take the sum values of arrays **a**, **b**, and **c** and subtract them from the values in array **d**, assigning those values to a new array, **e**.
+
+```js
+var a = [50,49,48,47,46,45,44,43,42,50,50,50];
+var b = [50,50,50,50,50,50,50,50,50,50,50,50];
+var c = [50,50,50,50,50,50,50,50,50,50,50,50];
+var d = [500,500,500,500,500,500,500,500,500,500,500,500];
+var agg = a.map(function(item, index) {
+  return item + b[index] + c[index];
+});
+var e = d.map(function(item, index) {
+  return item - agg[index];
+});
+```
+> This was used for HighCharts manipulation
+
+---
+
 
 ## Async
 ```js
