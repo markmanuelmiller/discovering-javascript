@@ -1,7 +1,7 @@
 # Snippets
 
 
-## Check Existence of Function Parameters
+### Check Existence of Function Parameters
 ```js
 function someFunction(parm1, parm2, parm3) {
     if(typeof parm1 !== 'undefined') {
@@ -13,14 +13,79 @@ function someFunction(parm1, parm2, parm3) {
 
 ----------------------------------
 
-## Performant `for` Loop
+### Performant `for` Loop
 
+--- 
 
+### Ternary Operator
+###### Longhand
+```js
+var x = 20;
+var answer;
+if (x > 10) {
+  answer = 'greater than 10';
+} else {
+  answer = 'less than 10';
+}
+```
+
+###### Shorthand
+```js
+var answer = x > 10 ? 'greater than 10' : 'less than 10';
+```
+
+---
+
+### Short-Circuit Evlauation Shorthand
+###### Longhand
+```js
+if (variable1 !== null || variable1 !== undefined || variable1 !== '') {
+  var variable2 = variable1;
+}
+```
+
+###### Shorthand
+```js
+var variable2 = variable1  || 'new';
+```
+
+---
+
+### Declaring Variables
+###### Longhand
+```js
+var x;
+var y;
+var z = 3;
+```
+
+###### Shorthand
+```js
+var x, y, z = 3;
+```
+
+---
+
+### Short-circuit Evaluation
+###### Longhand
+```js
+let dbHost;
+if (process.env.DB_HOST) {
+  dbHost = process.env.DB_HOST;
+} else {
+  dbHost = 'localhost';
+}
+```
+
+###### Shorthand
+```js
+const dbHost = process.env.DB_HOST || 'localhost';
+```
 
 ----------------------------------
 
-## Working with Arrays
-### `forEach`
+### Working with Arrays
+#### `forEach`
 Syntax
 ```js
 arr.forEach(function callback(currentValue[, index[, array]]) {
@@ -46,7 +111,7 @@ arr.forEach(function(element, index) {
 
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 
-### `map`
+#### `map`
 Syntax
 ```js
 var new_array = arr.map(function callback(currentValue[, index[, array]]) {
@@ -74,7 +139,7 @@ var a = map.call('Hello World', function(x) {
 
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
-### `reduce`
+#### `reduce`
 Syntax
 ```js
 arr.reduce(callback[, initialValue])
@@ -102,7 +167,7 @@ var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
 [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 
-### Adding Multiple Arrays Together & Finding the Difference
+#### Adding Multiple Arrays Together & Finding the Difference
 The following code will take the sum values of arrays **a**, **b**, and **c** and subtract them from the values in array **d**, assigning those values to a new array, **e**.
 
 ```js
@@ -122,7 +187,7 @@ var e = d.map(function(item, index) {
 ---
 
 
-## Async
+### Async
 ```js
 function waitThreeSeconds() {
   var ms = 3000 + new Date().getTime();
@@ -163,7 +228,7 @@ JavaScript doesn't look (execute) at the callback (event) queue until the stack 
 
 ----------------------------------
 
-## Callbacks & Promises
+### Callbacks & Promises
 
 Example 1
 ```js
@@ -324,7 +389,7 @@ getDisposableIncome().then(function(disposable) {
 
 ----------------------------------
 
-## Promises
+### Promises
 
 ```js
 var promiseToCleanRoom = new Promise(function(resolve, reject) {
@@ -351,7 +416,7 @@ promiseToCleanRoom.then(function(fromResolve) {
 
 # Misc Snippets
 
-## Performing "Work"
+### Performing "Work"
 ```js
 function doWork() {
   var ms = 3000 + new Date().getTime();
