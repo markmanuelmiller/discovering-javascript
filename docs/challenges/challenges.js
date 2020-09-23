@@ -19,8 +19,8 @@ function pigIt(str) {
   return words.join(" ");
 }
 
-Test.assertEquals(pigIt("Pig latin is cool"), "igPay atinlay siay oolcay");
-Test.assertEquals(pigIt("This is my string"), "hisTay siay ymay tringsay");
+// Test.assertEquals(pigIt("Pig latin is cool"), "igPay atinlay siay oolcay");
+// Test.assertEquals(pigIt("This is my string"), "hisTay siay ymay tringsay");
 
 // Pipe
 
@@ -44,10 +44,10 @@ function addWorld(str) {
   return str + " world!";
 }
 
-debugger;
-let p = pipe(capitalize, addWorld);
-let a = p(hello());
-console.log(a);
+// debugger;
+// let p = pipe(capitalize, addWorld);
+// let a = p(hello());
+// console.log(a);
 
 // remove duplicates from sorted array, in place
 
@@ -93,9 +93,9 @@ var removeDuplicates = function (nums) {
   return pointer1;
 };
 
-let arr = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
-console.log(removeDuplicates(arr));
-console.log(arr);
+// let arr = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+// console.log(removeDuplicates(arr));
+// console.log(arr);
 
 // two sum
 
@@ -144,3 +144,12 @@ var twoSum = function (nums, target) {
   }
   return result;
 };
+
+
+function factorial(n) {
+  // base case - if n = 1, return 1
+  if (n === 1) return 1;
+  return n * factorial(--n);
+}
+
+console.log(factorial(3));
